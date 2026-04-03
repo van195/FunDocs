@@ -1,0 +1,16 @@
+
+frontend/.env
+
+
+# Python
+backend/.env
+
+
+
+
+# OS/editor
+.DS_Store
+.cursor/
+.vscode/
+Thumbs.db
+
