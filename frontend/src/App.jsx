@@ -57,10 +57,20 @@ export function PaymentGate({ onPaid }) {
 
 export function FunModeToggle({ funMode, onChange }) {
   return (
-    <label className="toggle" >
-      <input type="checkbox" checked={funMode} onChange={(e) => onChange(e.target.checked)} />
-      <span>Fun Mode</span>
-    </label>
+    <div className="buttonOfModes">
+      <label className="toggle" >
+        <input type="checkbox" checked={funMode} onChange={(e) => onChange(e.target.checked)} />
+        <span>Fun Mode</span>
+      </label>
+      <label className="toggle1" >
+        <button>Laser focus mode</button>
+      </label>
+      <label className="toggle" >
+        <input type="checkbox" checked={funMode} onChange={(e) => onChange(e.target.checked)} />
+        <span>Fun Mode</span>
+      </label>
+    </div>
+    
   );
 }
 
