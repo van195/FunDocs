@@ -5,7 +5,7 @@ const Home = ({allowPage})=>{
     
     return(
         <div className="home">
-            <Navbar allowPage={allowPage}/>
+            <Navbar/>
             <Hero/>
         </div>
     )
