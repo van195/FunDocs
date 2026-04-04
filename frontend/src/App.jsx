@@ -170,11 +170,14 @@ export default function App() {
       </div>
     );
   }
-if(me) return <Dashboard me={me} onMeUpdated={setMe} />;
+  if (!me?.has_access) {
+   return <PaymentGate onPaid={loadMe} />;
+  }
+if(!me?.has_access) return <Dashboard me={me} onMeUpdated={setMe} />;
  return(
  <Routes>
       <Route path="/" element={<Home />} />
-      <Route path="/register" element={<Register onAuthed={loadMe} />} />
+      <Route path="/register" element={<Register onAuthed={loadMe}  me={me} loadMe={loadMe}/>} />
 
       {/* Protected logic */}
       <Route

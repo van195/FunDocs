@@ -2,7 +2,10 @@ import './register.css';
 import { apiFetch, clearAccessToken, getAccessToken, setAccessToken } from "../../api.js";
 import ai from "../../assets/robot_hero.png"
 import { useState } from 'react';
-function Register({ onAuthed }) {
+import { useNavigate } from 'react-router-dom';
+import { PaymentGate } from '../../App.jsx';
+function Register({ onAuthed,me ,loadMe}) {
+    const navigation = useNavigate()
   const [mode, setMode] = useState("login"); // login | register
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -30,6 +33,7 @@ function Register({ onAuthed }) {
       });
       setAccessToken(tokens.access);
       onAuthed();
+      if(!me.has_access) return <PaymentGate onPaid={loadMe} />
     } catch (err) {
       setError(err.message || "Request failed");
     } finally {
