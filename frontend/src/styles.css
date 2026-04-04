@@ -82,6 +82,7 @@ input[type="file"]{
   display: flex;
   border-radius: 20px;
   box-shadow: 3px 5px 10px #78c4b775;
+  overflow: hidden;
 }
 
 .form label {
@@ -94,7 +95,6 @@ input[type="file"]{
   flex-direction: column;
 }
  .form input {
-  
   width: 100%;
   margin-top: 6px;
   padding: 10px 12px;
@@ -104,8 +104,12 @@ input[type="file"]{
   color: var(--text);
   outline: none;
 }
-.signUpContainer .theTextDecore{
+.theTextDecore{
   flex: 1;
+  img{
+    width: 400px;
+    margin-left: 300px;
+  }
 }
 
 button {

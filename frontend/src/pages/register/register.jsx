@@ -1,6 +1,6 @@
 import './register.css';
 import { apiFetch, clearAccessToken, getAccessToken, setAccessToken } from "../../api.js";
-import ai from "../../assets/robot_hero.png"
+import ai from "../../assets/robot.png"
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { PaymentGate } from '../../App.jsx';
@@ -81,7 +81,7 @@ function Register({ onAuthed,me ,loadMe}) {
              </form>
             </div>
             <div className="theTextDecore">
-                
+                <img src={ai} alt="" />
             </div>
       </div>
     </div>
