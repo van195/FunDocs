@@ -243,6 +243,170 @@ def load_rag_artifacts(doc: UploadedDocument) -> Tuple[np.ndarray, List[str]]:
     return mat, chunks
 
 
+def get_rag_context_for_query(*, doc: UploadedDocument, query: str, top_k: int = 8) -> str:
+    emb_obj, chunks = load_rag_artifacts(doc)
+    if isinstance(emb_obj, tuple):
+        vectorizer, mat = emb_obj
+        q = vectorizer.transform([query])
+        q = normalize(q, norm="l2", axis=1, copy=False)
+        sims = (mat @ q.T).toarray().ravel()
+        idxs = np.argsort(-sims)[:top_k]
+        scored = [(int(i), float(sims[i])) for i in idxs]
+    else:
+        mat = emb_obj
+        q_emb = groq_embeddings([query])[0]
+        q_vec = np.array(q_emb, dtype=np.float32)
+        q_norm = np.linalg.norm(q_vec)
+        if q_norm == 0:
+            q_norm = 1.0
+        q_vec = q_vec / q_norm
+        scored = cos_sim_topk(q_vec, mat, top_k=top_k)
+    return build_context(chunks, scored, max_chunks=top_k)
+
+
+def extract_json_array(text: str) -> Any:
+    text = text.strip()
+    if text.startswith("```"):
+        text = re.sub(r"^```(?:json)?\s*", "", text, flags=re.IGNORECASE)
+        text = re.sub(r"\s*```\s*$", "", text).strip()
+    start = text.find("[")
+    end = text.rfind("]")
+    if start == -1 or end == -1 or end <= start:
+        raise ValueError("No JSON array found in model output.")
+    return json.loads(text[start : end + 1])
+
+
+def normalize_quiz_questions(raw: Any, *, expected_count: int) -> List[Dict[str, Any]]:
+    if not isinstance(raw, list):
+        raise ValueError("Quiz model returned non-list JSON.")
+    if len(raw) != expected_count:
+        raise ValueError(f"Expected {expected_count} questions, got {len(raw)}.")
+    out: List[Dict[str, Any]] = []
+    for i, q in enumerate(raw):
+        if not isinstance(q, dict):
+            raise ValueError("Each question must be an object.")
+        qid = str(q.get("id") or f"q{i + 1}")
+        question = (q.get("question") or "").strip()
+        options = q.get("options")
+        if not isinstance(options, list) or len(options) != 4:
+            raise ValueError(f"Question {qid} must have exactly 4 options.")
+        options = [str(o).strip() for o in options]
+        if any(not o for o in options):
+            raise ValueError(f"Question {qid} has empty options.")
+        try:
+            ci = int(q.get("correct_index"))
+        except (TypeError, ValueError) as e:
+            raise ValueError(f"Question {qid} needs integer correct_index.") from e
+        if ci not in (0, 1, 2, 3):
+            raise ValueError(f"Question {qid}: correct_index must be 0-3.")
+        if not question:
+            raise ValueError(f"Question {qid} has empty text.")
+        out.append(
+            {
+                "id": qid,
+                "question": question,
+                "options": options,
+                "correct_index": ci,
+            }
+        )
+    return out
+
+
+def generate_quiz_questions(*, doc: UploadedDocument, num_questions: int) -> List[Dict[str, Any]]:
+    rq = (
+        "Key concepts, definitions, facts, dates, names, and important details "
+        "that could be tested with multiple-choice questions."
+    )
+    context = get_rag_context_for_query(doc=doc, query=rq, top_k=10)
+    system = (
+        "You create clear multiple-choice quiz questions for studying. "
+        "Use ONLY the provided document context. If context is thin, ask simpler factual questions. "
+        "Respond with ONLY a JSON array (no markdown, no commentary)."
+    )
+    user = (
+        f"Create exactly {num_questions} multiple-choice questions.\n"
+        "Each element must be a JSON object with: "
+        '"id" (short string), "question" (string), '
+        '"options" (array of exactly 4 distinct strings), '
+        '"correct_index" (integer 0-3 pointing to the correct option).\n'
+        "Vary difficulty. Do not repeat the same wording.\n\n"
+        f"Document context:\n{context}"
+    )
+    raw_text = groq_chat(
+        [{"role": "system", "content": system}, {"role": "user", "content": user}],
+        temperature=0.35,
+    )
+    parsed = extract_json_array(raw_text)
+    return normalize_quiz_questions(parsed, expected_count=num_questions)
+
+
+def explain_quiz_results(
+    *,
+    doc: UploadedDocument,
+    questions: List[Dict[str, Any]],
+    answer_by_qid: Dict[str, int],
+    fun_mode: bool,
+) -> List[Dict[str, str]]:
+    context = get_rag_context_for_query(
+        doc=doc,
+        query="Evidence and quotes supporting quiz answers and explanations.",
+        top_k=8,
+    )
+    lines: List[str] = []
+    for q in questions:
+        qid = q["id"]
+        sel = answer_by_qid.get(qid, -1)
+        correct_idx = q["correct_index"]
+        opts = q["options"]
+        correct_text = opts[correct_idx] if 0 <= correct_idx < len(opts) else ""
+        picked = opts[sel] if 0 <= sel < len(opts) else "(no answer)"
+        ok = sel == correct_idx
+        lines.append(
+            f"- id={qid}\n"
+            f"  Q: {q['question']}\n"
+            f"  User picked: {picked}\n"
+            f"  Correct: {correct_text}\n"
+            f"  User was {'CORRECT' if ok else 'WRONG'}."
+        )
+    block = "\n".join(lines)
+    if fun_mode:
+        system = (
+            "You are a playful tutor. For EACH quiz item, write a short, memorable explanation "
+            "of why the correct answer is right (and if the user was wrong, gently correct them). "
+            "Use vivid analogies; you may sprinkle Amharic words or light Ethiopian-flavored humor. "
+            "Stay grounded in the document context. "
+            "Return ONLY JSON: an array of objects with keys question_id (string), explanation (string)."
+        )
+    else:
+        system = (
+            "For EACH quiz item, write a concise, accurate explanation referencing the document. "
+            "Return ONLY JSON: an array of objects with keys question_id (string), explanation (string)."
+        )
+    user = (
+        "Document context (for grounding):\n"
+        f"{context}\n\n"
+        "Quiz review items:\n"
+        f"{block}\n\n"
+        "Produce one explanation per question_id in the same order as listed."
+    )
+    raw_text = groq_chat(
+        [{"role": "system", "content": system}, {"role": "user", "content": user}],
+        temperature=0.4 if fun_mode else 0.2,
+    )
+    parsed = extract_json_array(raw_text)
+    if not isinstance(parsed, list):
+        raise ValueError("Explanations model returned non-list JSON.")
+    out: List[Dict[str, str]] = []
+    for item in parsed:
+        if not isinstance(item, dict):
+            continue
+        qid = str(item.get("question_id") or item.get("id") or "")
+        expl = str(item.get("explanation") or "").strip()
+        if qid and expl:
+            out.append({"question_id": qid, "explanation": expl})
+    return out
+
+
 def build_context(chunks: List[str], scored: List[Tuple[int, float]], max_chunks: int = 6) -> str:
     selected = scored[:max_chunks]
     blocks: List[str] = []

@@ -11,6 +11,9 @@ from .views import (
     DocumentUploadView,
     DocumentListView,
     ChatAskView,
+    QuizGenerateView,
+    QuizSubmitView,
+    QuizHistoryView,
 )
 
 urlpatterns = [
@@ -29,5 +32,9 @@ urlpatterns = [
     path("documents/", DocumentListView.as_view(), name="document-list"),
 
     path("chat/ask/", ChatAskView.as_view(), name="chat-ask"),
+
+    path("quiz/generate/", QuizGenerateView.as_view(), name="quiz-generate"),
+    path("quiz/submit/", QuizSubmitView.as_view(), name="quiz-submit"),
+    path("quiz/history/", QuizHistoryView.as_view(), name="quiz-history"),
 ]
 

@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User
 from rest_framework import serializers
 
-from .models import UserProfile, UploadedDocument
+from .models import UserProfile, UploadedDocument, QuizAttempt
 
 
 class RegisterSerializer(serializers.ModelSerializer):
@@ -49,4 +49,25 @@ class DocumentListItemSerializer(serializers.ModelSerializer):
 class ChatAskSerializer(serializers.Serializer):
     document_id = serializers.IntegerField()
     question = serializers.CharField(min_length=1, max_length=4000)
+
+
+class QuizGenerateSerializer(serializers.Serializer):
+    document_id = serializers.IntegerField()
+    num_questions = serializers.IntegerField(required=False, default=5, min_value=3, max_value=10)
+
+
+class QuizAnswerItemSerializer(serializers.Serializer):
+    question_id = serializers.CharField(max_length=64)
+    selected_index = serializers.IntegerField(min_value=0, max_value=3)
+
+
+class QuizSubmitSerializer(serializers.Serializer):
+    quiz_id = serializers.IntegerField()
+    answers = QuizAnswerItemSerializer(many=True)
+
+    def validate_answers(self, value):
+        ids = [a["question_id"] for a in value]
+        if len(ids) != len(set(ids)):
+            raise serializers.ValidationError("Duplicate question_id in answers.")
+        return value
 

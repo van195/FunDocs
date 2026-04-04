@@ -10,7 +10,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.parsers import MultiPartParser, FormParser
 
-from .models import ChapaPayment, UploadedDocument, UserProfile
+from .models import ChapaPayment, QuizAttempt, UploadedDocument, UserProfile
 from .permissions import IsPaid
 from .serializers import (
     RegisterSerializer,
@@ -19,10 +19,14 @@ from .serializers import (
     DocumentUploadResponseSerializer,
     DocumentListItemSerializer,
     ChatAskSerializer,
+    QuizGenerateSerializer,
+    QuizSubmitSerializer,
 )
 
 from .services import (
     ask_groq_about_doc,
+    explain_quiz_results,
+    generate_quiz_questions,
     chapa_initialize_payment,
     chapa_verify_payment,
     extract_text_from_file,
@@ -284,4 +288,188 @@ class ChatAskView(APIView):
                 {"detail": "Chat failed.", "error": str(e)},
                 status=status.HTTP_400_BAD_REQUEST,
             )
+
+
+def _quiz_public_questions(questions: list) -> list:
+    return [{"id": q["id"], "question": q["question"], "options": q["options"]} for q in questions]
+
+
+class QuizGenerateView(APIView):
+    permission_classes = [IsPaid]
+
+    def post(self, request):
+        ser = QuizGenerateSerializer(data=request.data)
+        ser.is_valid(raise_exception=True)
+        document_id = ser.validated_data["document_id"]
+        num_questions = ser.validated_data["num_questions"]
+
+        doc = UploadedDocument.objects.get(id=document_id, user=request.user)
+        if doc.processing_status != "done":
+            return Response(
+                {
+                    "detail": "Document is not processed yet.",
+                    "processing_status": doc.processing_status,
+                    "processing_error": doc.processing_error,
+                },
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+
+        try:
+            questions = generate_quiz_questions(doc=doc, num_questions=num_questions)
+        except Exception as e:
+            return Response(
+                {"detail": "Failed to generate quiz.", "error": str(e)},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+
+        attempt = QuizAttempt.objects.create(
+            user=request.user,
+            document=doc,
+            questions=questions,
+        )
+        return Response(
+            {
+                "quiz_id": attempt.id,
+                "document_id": doc.id,
+                "questions": _quiz_public_questions(questions),
+            },
+            status=status.HTTP_201_CREATED,
+        )
+
+
+class QuizSubmitView(APIView):
+    permission_classes = [IsPaid]
+
+    def post(self, request):
+        ser = QuizSubmitSerializer(data=request.data)
+        ser.is_valid(raise_exception=True)
+        quiz_id = ser.validated_data["quiz_id"]
+        answers_in = ser.validated_data["answers"]
+
+        try:
+            attempt = QuizAttempt.objects.select_related("document").get(
+                id=quiz_id, user=request.user
+            )
+        except QuizAttempt.DoesNotExist:
+            return Response({"detail": "Quiz not found."}, status=status.HTTP_404_NOT_FOUND)
+
+        if attempt.submitted_at is not None:
+            return Response(
+                {"detail": "This quiz was already submitted."},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+
+        doc = attempt.document
+        if doc.processing_status != "done":
+            return Response(
+                {"detail": "Document is no longer available for this quiz."},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+
+        full_questions: list = attempt.questions
+        expected_ids = {q["id"] for q in full_questions}
+        answer_map = {a["question_id"]: a["selected_index"] for a in answers_in}
+        if set(answer_map.keys()) != expected_ids or len(answers_in) != len(expected_ids):
+            return Response(
+                {
+                    "detail": "Answers must include exactly one selected_index per question.",
+                    "expected_question_ids": sorted(expected_ids),
+                },
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+
+        score = 0
+        for q in full_questions:
+            if answer_map.get(q["id"]) == q["correct_index"]:
+                score += 1
+        max_score = len(full_questions)
+
+        profile = UserProfile.objects.get(user=request.user)
+        try:
+            expl = explain_quiz_results(
+                doc=doc,
+                questions=full_questions,
+                answer_by_qid=answer_map,
+                fun_mode=bool(profile.fun_mode),
+            )
+        except Exception:
+            expl = [
+                {
+                    "question_id": q["id"],
+                    "explanation": f"The correct answer is: {q['options'][q['correct_index']]}.",
+                }
+                for q in full_questions
+            ]
+
+        expl_by_id = {e["question_id"]: e["explanation"] for e in expl}
+        results = []
+        for q in full_questions:
+            qid = q["id"]
+            sel = answer_map[qid]
+            correct_idx = q["correct_index"]
+            results.append(
+                {
+                    "question_id": qid,
+                    "question": q["question"],
+                    "options": q["options"],
+                    "selected_index": sel,
+                    "correct_index": correct_idx,
+                    "correct": sel == correct_idx,
+                    "explanation": expl_by_id.get(
+                        qid, f"The correct answer is: {q['options'][correct_idx]}."
+                    ),
+                }
+            )
+
+        attempt.answers = [{"question_id": k, "selected_index": v} for k, v in answer_map.items()]
+        attempt.score = score
+        attempt.max_score = max_score
+        attempt.explanations = expl
+        attempt.submitted_at = now_utc()
+        attempt.save(
+            update_fields=["answers", "score", "max_score", "explanations", "submitted_at"]
+        )
+
+        pct = round(100.0 * score / max_score, 1) if max_score else 0.0
+        return Response(
+            {
+                "quiz_id": attempt.id,
+                "score": score,
+                "max_score": max_score,
+                "percentage": pct,
+                "results": results,
+            },
+            status=status.HTTP_200_OK,
+        )
+
+
+class QuizHistoryView(APIView):
+    permission_classes = [IsPaid]
+
+    def get(self, request):
+        doc_id = request.query_params.get("document_id")
+        qs = QuizAttempt.objects.filter(user=request.user, submitted_at__isnull=False).order_by(
+            "-submitted_at"
+        )
+        if doc_id:
+            try:
+                qs = qs.filter(document_id=int(doc_id))
+            except (TypeError, ValueError):
+                return Response({"detail": "Invalid document_id."}, status=status.HTTP_400_BAD_REQUEST)
+
+        items = []
+        for a in qs[:25]:
+            items.append(
+                {
+                    "id": a.id,
+                    "document_id": a.document_id,
+                    "score": a.score,
+                    "max_score": a.max_score,
+                    "percentage": round(100.0 * (a.score or 0) / a.max_score, 1)
+                    if a.max_score
+                    else 0.0,
+                    "submitted_at": a.submitted_at.isoformat() if a.submitted_at else None,
+                }
+            )
+        return Response({"attempts": items}, status=status.HTTP_200_OK)
 

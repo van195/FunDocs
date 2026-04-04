@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
-import { FunModeToggle,ChatBox } from "../../App";
+import { FunModeToggle, ChatBox } from "../../App";
 import { apiFetch } from "../../api";
-import AttachFileOutlinedIcon from '@mui/icons-material/AttachFileOutlined';
+import QuizSection from "./QuizSection";
 
 function Dashboard({ me, onMeUpdated }) {
   const [funMode, setFunMode] = useState(Boolean(me.fun_mode));
@@ -125,6 +125,11 @@ function Dashboard({ me, onMeUpdated }) {
           <ChatBox documentId={activeDocId} key={activeDocId || "none"} />
         </div>
       </div>
+
+      <QuizSection
+        documentId={activeDoc?.processing_status === "done" ? activeDocId : null}
+        funMode={funMode}
+      />
     </div>
   );
 }

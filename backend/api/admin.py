@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import UserProfile, ChapaPayment, UploadedDocument
+from .models import UserProfile, ChapaPayment, UploadedDocument, QuizAttempt
 
 
 @admin.register(UserProfile)
@@ -19,4 +19,10 @@ class ChapaPaymentAdmin(admin.ModelAdmin):
 class UploadedDocumentAdmin(admin.ModelAdmin):
     list_display = ("user", "original_filename", "processing_status", "uploaded_at")
     search_fields = ("original_filename",)
+
+
+@admin.register(QuizAttempt)
+class QuizAttemptAdmin(admin.ModelAdmin):
+    list_display = ("id", "user", "document", "score", "max_score", "submitted_at", "created_at")
+    search_fields = ("user__username",)
 

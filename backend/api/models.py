@@ -66,3 +66,21 @@ class UploadedDocument(models.Model):
     def __str__(self) -> str:
         return f"doc<{self.id}> by user<{self.user_id}>"
 
+
+class QuizAttempt(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    document = models.ForeignKey(UploadedDocument, on_delete=models.CASCADE)
+    questions = models.JSONField(help_text="Full quiz payload including correct_index (server-only).")
+    created_at = models.DateTimeField(auto_now_add=True)
+    submitted_at = models.DateTimeField(blank=True, null=True)
+    answers = models.JSONField(blank=True, null=True)
+    score = models.PositiveIntegerField(blank=True, null=True)
+    max_score = models.PositiveIntegerField(blank=True, null=True)
+    explanations = models.JSONField(blank=True, null=True)
+
+    class Meta:
+        ordering = ["-created_at"]
+
+    def __str__(self) -> str:
+        return f"quiz<{self.id}> user<{self.user_id}> doc<{self.document_id}>"
+
