@@ -1,0 +1,79 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+.navbar{
+    width: 100vw;
+    height: 70px;
+    border: 1px solid #000;
+    background-color: #000;
+    margin: auto;
+    .navbarContainer{
+        width: 100%;
+        height: 90%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        .theTopPart{
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 10px;
+            img{
+                width: 50px;
+                height: 50px;
+                border-radius: 10px;
+            }
+        }
+        .theCenterPart{
+            flex: 2;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 25px;
+            .menuItems{
+                font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+                font-weight: 700;
+                color: #fff;
+            }
+        }
+        .theBottomPart{
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            .callOfAction{
+                width: 120px;
+                height: 33px;
+                display: flex;
+                align-items: center;
+                justify-content:flex-end;
+                gap: 15px;
+                border-radius: 20px;
+                background-color: aliceblue;
+                transition: .4s ease-out;
+                cursor: pointer;
+                &:hover{
+                    transform: scale(1.05);
+                }
+                span{
+
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;  
+                    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+                    font-weight: 700;
+                }
+                .theArrow{
+                  
+                  width: 30px;
+                  height: 30px;
+                  background-color: #000;
+                  border: 1px solid #000;
+                  border-radius: 50%;
+                }
+            }
+        }
+    }
+}
