@@ -287,3 +287,152 @@ button:disabled {
   color: var(--text);
 }
 
+.card {
+  background: var(--card);
+  border: 0.4px solid rgba(255, 255, 255, 0.338);
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.quizSection {
+  margin-top: 20px;
+}
+
+.quizHint {
+  margin-top: 0;
+  margin-bottom: 12px;
+}
+
+.quizToolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.quizNumLabel {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.quizNumLabel select {
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(0, 0, 0, 0.35);
+  color: var(--text);
+}
+
+.quizTaking {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.quizQuestionBlock {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 12px 14px;
+  margin: 0;
+}
+
+.quizQuestionBlock legend {
+  padding: 0 8px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.quizOption {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-top: 10px;
+  cursor: pointer;
+  color: var(--muted);
+}
+
+.quizOption input {
+  margin-top: 3px;
+}
+
+.quizScoreBanner {
+  font-size: 1.1rem;
+  margin-bottom: 14px;
+  padding: 12px;
+  border-radius: 10px;
+  background: rgba(106, 166, 255, 0.12);
+  border: 1px solid rgba(106, 166, 255, 0.35);
+}
+
+.quizResultList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.quizResultItem {
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.quizResultItem.ok {
+  border-color: rgba(116, 213, 182, 0.45);
+}
+
+.quizResultItem.bad {
+  border-color: rgba(255, 106, 106, 0.35);
+}
+
+.quizQtext {
+  font-weight: 700;
+  margin-bottom: 8px;
+  line-height: 1.35;
+}
+
+.quizAnswerMeta {
+  font-size: 14px;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+
+.picked {
+  color: var(--text);
+}
+
+.correctOpt {
+  color: #74d5b6;
+}
+
+.quizExplanation {
+  white-space: pre-wrap;
+  line-height: 1.4;
+  color: var(--text);
+  font-size: 14px;
+}
+
+.quizHistory ul {
+  margin: 8px 0 0;
+  padding-left: 18px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.quizHistory li {
+  margin-bottom: 6px;
+}
+
+@media (max-width: 900px) {
+  .grid2 {
+    grid-template-columns: 1fr;
+  }
+}
+
