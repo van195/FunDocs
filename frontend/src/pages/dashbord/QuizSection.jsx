@@ -47,7 +47,7 @@ export default function QuizSection({ documentId, funMode }) {
     setResults(null);
     try {
       const res = await apiFetch("/quiz/generate/", {
-        method: "POST",
+        method:  "POST",
         body: { document_id: documentId, num_questions: numQuestions }
       });
       setQuizId(res.quiz_id);
@@ -133,7 +133,6 @@ export default function QuizSection({ documentId, funMode }) {
               </button>
             )}
           </div>
-
           {error ? <div className="error">{error}</div> : null}
 
           {results ? (

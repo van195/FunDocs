@@ -70,7 +70,7 @@ function Dashboard({ me, onMeUpdated }) {
 
       <div className="grid2">
         <div className="card-dashbord">
-          <div className="cardHeader">Upload</div>
+          <div className="cardHeader"></div>
           <div className="uploadContainer">
               <label className="Fileupload-bUtton" for ="fileInput"><AttachFileOutlinedIcon 
            
