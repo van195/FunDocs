@@ -43,4 +43,45 @@ export async function apiFetch(path, { method = "GET", body, auth = true } = {})
   }
   return data;
 }
-
+/*
+  const res = await fetch(url, { method, headers, body: reqBody });
+  let data = null;
+  try {
+    data = await res.json();
+  } catch {
+   *
+  const res = await fetch(url, { method, headers, body: reqBody });
+  let data = null;
+  try {
+    data = await res.json();
+  } catch {'*
+  const res = await fetch(url, { method, headers, body: reqBody });
+  let data = null;
+  try {
+    data = await res.json();
+  } catch {'*
+  const res = await fetch(url, { method, headers, body: reqBody });
+  let data = null;
+  try {
+    data = await res.json();
+  // } catch {*
+ch(url, { method, headers, body: reqBody });
+  let data = null;
+  try {
+    data = await res.json();
+  // } catch {*
+  const res = await fetch(url, { method, headers, body: reqBody });
+  let data = null;
+  try {
+    data = await res.json();
+  // } catch {*
+  const res = await fetch(url, { method, headers, body: reqBody });
+  let data = null;
+  try {
+    data = await res.json();
+  // } catch {*
+  const res = await fetch(url, { method, headers, body: reqBody });
+  let data = null;
+  try {
+    data = await res.json();
+  } catch {*/
