@@ -7,7 +7,59 @@ import {useToggle} from '../../context/PageContext'
 
 const Navbar = ({allowPage})=>{
     const { value, toggle } = useToggle();
-  
+     //if (!me?.has_access) {
+  //  return <PaymentGate onPaid={loadMe} />;
+  //} //if (!me?.has_access) {
+  //  return <PaymentGate onPaid={loadMe} />;
+  //} //if (!me?.has_access) {
+  //  return <PaymentGate onPaid={loadMe} />;
+  //} //if (!me?.has_access) {
+  //  return <PaymentGate onPaid={loadMe} />;
+  //} //if (!me?.has_access) {
+  //  return <PaymentGate onPaid={loadMe} />;
+  //} //if (!me?.has_access) {
+  //  return <PaymentGate onPaid={loadMe} />;
+  //} //if (!me?.has_access) {
+  //  return <PaymentGate onPaid={loadMe} />;
+  //} //if (!me?.has_access) {
+  //  return <PaymentGate onPaid={loadMe} />;
+  //} //if (!me?.has_access) {
+  //  return <PaymentGate onPaid={loadMe} />;
+  //} //if (!me?.has_access) {
+  //  return <PaymentGate onPaid={loadMe} />;
+  //} //if (!me?.has_access) {
+  //  return <PaymentGate onPaid={loadMe} />;
+  //} //if (!me?.has_access) {
+  //  return <PaymentGate onPaid={loadMe} />;
+  //} //if (!me?.has_access) {
+  //  return <PaymentGate onPaid={loadMe} />;
+  //} //if (!me?.has_access) {
+  //  return <PaymentGate onPaid={loadMe} />;
+  //} //if (!me?.has_access) {
+  //  return <PaymentGate onPaid={loadMe} />;
+  //} //if (!me?.has_access) {
+  //  return <PaymentGate onPaid={loadMe} />;
+  //} //if (!me?.has_access) {
+  //  return <PaymentGate onPaid={loadMe} />;
+  //} //if (!me?.has_access) {
+  //  return <PaymentGate onPaid={loadMe} />;
+  //} //if (!me?.has_access) {
+  //  return <PaymentGate onPaid={loadMe} />;
+  //} //if (!me?.has_access) {
+  //  return <PaymentGate onPaid={loadMe} />;
+  //} //if (!me?.has_access) {
+  //  return <PaymentGate onPaid={loadMe} />;
+  //} //if (!me?.has_access) {
+  //  return <PaymentGate onPaid={loadMe} />;
+  //} //if (!me?.has_access) {
+  //  return <PaymentGate onPaid={loadMe} />;
+  //} //if (!me?.has_access) {
+  //  return <PaymentGate onPaid={loadMe} />;
+  //} //if (!me?.has_access) {
+  //  return <PaymentGate onPaid={loadMe} />;
+  //} //if (!me?.has_access) {
+  //  return <PaymentGate onPaid={loadMe} />;
+  //}
     return(
         <div className="navbar">
             <div className="navbarContainer">
