@@ -80,35 +80,6 @@ export function ChatBox({ documentId }) {
   const [error, setError] = useState("");
   const [Auth, setAuthentication] = useState(null);
 
-  //const [error, setError] = useState("");
-  //const [error, setError] = useState("");
-  //const [Auth, setAuthentication] = useState(null);
-  //const [error, setError] = useState("");
-  //const [Auth, setAuthentication] = useState(null);
-  //const [error, setError] = useState("");
-  //const [Auth, setAuthentication] = useState(null);
-  //const [error, setError] = useState("");
-  //const [Auth, setAuthentication] = useState(null);
-  //const [error, setError] = useState("");
-  //const [Auth, setAuthentication] = useState(null);
-  //const [error, setError] = useState("");
-  //const [Auth, setAuthentication] = useState(null);
-  //const [error, setError] = useState("");
-  //const [Auth, setAuthentication] = useState(null);
-  //const [error, setError] = useState("");
-  //const [Auth, setAuthentication] = useState(null);
-  //const [error, setError] = useState("");
-  //const [Auth, setAuthentication] = useState(null);
-  //const [error, setError] = useState("");
-  //const [Auth, setAuthentication] = useState(null);
-  //const [error, setError] = useState("");
-  //const [Auth, setAuthentication] = useState(null);
-  //const [error, setError] = useState("");
-  //const [Auth, setAuthentication] = useState(null);
-  //const [error, setError] = useState("");
-  //const [Auth, setAuthentication] = useState(null);
-  //
-  
   async function send() {
     if (!question.trim() || !documentId) return;
     setError("");

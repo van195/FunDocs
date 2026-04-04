@@ -11,7 +11,8 @@ export default function QuizSection({ documentId, funMode }) {
   const [results, setResults] = useState(null);
   const [history, setHistory] = useState([]);
   const [someone,setSomeOne] = useState(false)
-
+  console.log(history);
+  
   const loadHistory = useCallback(async () => {
     setSomeOne(true)
     if (!documentId) {

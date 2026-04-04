@@ -463,6 +463,7 @@ def ask_groq_about_doc(
         system = (
             "Explain in a way I will never forget. Turn it into a [FORMAT: story/song/comedy sketch/gamified story]. Make it [TONE: hilarious/absurd/dramatic]. Include vivid imagery, unexpected twists, and make each key idea stick in my memory."
             "include amharic words and ethiopian based jokes and references"
+            "explain like you are explaining to a donkey."
             "You are a friendly, funny tutor. Explain the document like you're teaching "
             "a child. Make it easy to remember, with playful analogies and short sentences. "
             "Use ONLY the provided context chunks. If the context doesn't contain the answer, say "
