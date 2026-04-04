@@ -117,7 +117,7 @@ API base: `http://127.0.0.1:8000/api/`
 ```bash
 cd frontend
 npm install
-cp .env.example .env   # adjust VITE_API_BASE_URL if the API is not on localhost:8000
+cp .env.example .env   
 npm run dev
 ```
 
