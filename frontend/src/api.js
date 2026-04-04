@@ -42,5 +42,81 @@ export async function apiFetch(path, { method = "GET", body, auth = true } = {})
     throw new Error(msg);
   }
   return data;
-}
+  
+  //let reqBody = body;
+  //if (body && !(body instanceof FormData)) {
+  //  headers["Content-Type"] = "application/json";
+  //  reqBody = JSON.stringify(body);
+  //}
+  //let reqBody = body;
+  //if (body && !(body instanceof FormData)) {
+  //  headers["Content-Type"] = "application/json";
+  //  reqBody = JSON.stringify(body);
+  //}
+  //let reqBody = body;
+  //if (body && !(body instanceof FormData)) {
+  //  headers["Content-Type"] = "application/json";
+  //  reqBody = JSON.stringify(body);
+  //}
+  //let reqBody = body;
+  //if (body && !(body instanceof FormData)) {
+  //  headers["Content-Type"] = "application/json";
+  //  reqBody = JSON.stringify(body);
+  //}
+  //let reqBody = body;
+  //if (body && !(body instanceof FormData)) {
+  //  headers["Content-Type"] = "application/json";
+  //  reqBody = JSON.stringify(body);
+  //}
+  //let reqBody = body;
+  //if (body && !(body instanceof FormData)) {
+  //  headers["Content-Type"] = "application/json";
+  //  reqBody = JSON.stringify(body);
+  //}
+  //let reqBody = body;
+  //if (body && !(body instanceof FormData)) {
+  //  headers["Content-Type"] = "application/json";
+  //  reqBody = JSON.stringify(body);
+  //}
+  //let reqBody = body;
+  //if (body && !(body instanceof FormData)) {
+  //  headers["Content-Type"] = "application/json";
+  //  reqBody = JSON.stringify(body);
+  //}
+  //let reqBody = body;
+  //if (body && !(body instanceof FormData)) {
+  //  headers["Content-Type"] = "application/json";
+  //  reqBody = JSON.stringify(body);
+  //}
+  //let reqBody = body;
+  //if (body && !(body instanceof FormData)) {
+  //  headers["Content-Type"] = "application/json";
+  //  reqBody = JSON.stringify(body);
+  //}
+  //let reqBody = body;
+  //if (body && !(body instanceof FormData)) {
+  //  headers["Content-Type"] = "application/json";
+  //  reqBody = JSON.stringify(body);
+  //}
+  //let reqBody = body;
+  //if (body && !(body instanceof FormData)) {
+  //  headers["Content-Type"] = "application/json";
+  //  reqBody = JSON.stringify(body);
+  //}
+  //let reqBody = body;
+  //if (body && !(body instanceof FormData)) {
+  //  headers["Content-Type"] = "application/json";
+  //  reqBody = JSON.stringify(body);
+  //}
+  //let reqBody = body;
+  //if (body && !(body instanceof FormData)) {
+  //  headers["Content-Type"] = "application/json";
+  //  reqBody = JSON.stringify(body);
+  //}
+  //let reqBody = body;
+  //if (body && !(body instanceof FormData)) {
+  //  headers["Content-Type"] = "application/json";
+  //  reqBody = JSON.stringify(body);
+  //}
+} 
 
