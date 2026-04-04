@@ -1,9 +1,8 @@
 import './register.css';
 import { apiFetch, clearAccessToken, getAccessToken, setAccessToken } from "../../api.js";
 import ai from "../../assets/robot.png"
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { PaymentGate } from '../../App.jsx';
 function Register({ onAuthed,me ,loadMe}) {
     const navigation = useNavigate()
   const [mode, setMode] = useState("login"); // login | register

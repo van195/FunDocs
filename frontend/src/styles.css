@@ -110,6 +110,12 @@ input[type="file"]{
     width: 400px;
     margin-left: 300px;
   }
+  h2{
+    text-align: start
+    ;
+    color: #6aa6ff;
+    z-index: 2;
+  }
 }
 
 button {
