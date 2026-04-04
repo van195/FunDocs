@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { FunModeToggle, ChatBox } from "../../App";
 import { apiFetch } from "../../api";
 import QuizSection from "./QuizSection";
-
+import AttachFileOutlinedIcon from '@mui/icons-material/AttachFileOutlined';
 function Dashboard({ me, onMeUpdated }) {
   const [funMode, setFunMode] = useState(Boolean(me.fun_mode));
   const [docs, setDocs] = useState([]);
