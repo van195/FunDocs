@@ -35,7 +35,7 @@ pip install -r requirements.txt
 Copy the environment template and fill in real values:
 
 ```bash
-cp .env.example .env    # Windows: copy .env.example .env
+cp .env.example .env    
 ```
 
 Apply migrations:

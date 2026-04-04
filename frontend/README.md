@@ -27,7 +27,7 @@ Single-page app built with **React**, **Vite**, and **React Router**. It talks t
 ```bash
 cd frontend
 npm install
-cp .env.example .env    # Windows: copy .env.example .env
+cp .env.example .env    
 ```
 
 Edit `.env` if the API is not at the default:

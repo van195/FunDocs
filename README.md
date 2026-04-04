@@ -39,7 +39,7 @@ FunDocs is not a replacement for teachers, lawyers, or doctors; it is a **produc
 - [Quick start](#quick-start)
 - [Configuration](#configuration)
 - [Documentation](#documentation)
-- [License](#license)
+
 
 ---
 
