@@ -19,11 +19,6 @@ body{
         justify-content: center;
         flex-direction: column;
     }
-    .theTextDecore{
-        flex: 1;
-        h2{
-            color: #fff;
-        }
-    }
+    
 }
 }
