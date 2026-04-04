@@ -9,11 +9,11 @@ Django REST API for **authentication**, **Chapa payments**, **document upload & 
 - [Requirements](#requirements)
 - [Setup](#setup)
 - [Run](#run)
-- [Environment variables](#environment-variables)
+
 - [API reference](#api-reference)
-- [Data model (overview)](#data-model-overview)
+
 - [RAG & embeddings](#rag--embeddings)
-- [Troubleshooting](#troubleshooting)
+
 
 ---
 
@@ -28,8 +28,7 @@ Django REST API for **authentication**, **Chapa payments**, **document upload & 
 
 ```bash
 cd backend
-python -m venv .venv
-# Activate: .venv\Scripts\activate (Windows) or source .venv/bin/activate (Unix)
+
 pip install -r requirements.txt
 ```
 
@@ -89,16 +88,7 @@ Defined in [`.env.example`](.env.example). Summary:
 
 ---
 
-## API reference
 
-Unless noted, endpoints expect header:
-
-```http
-Authorization: Bearer <access_token>
-Content-Type: application/json
-```
-
-File upload uses `multipart/form-data` (no JSON `Content-Type` on the request).
 
 ### Authentication
 

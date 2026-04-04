@@ -101,12 +101,11 @@ FunDocs is not a replacement for teachers, lawyers, or doctors; it is a **produc
 
 ```bash
 cd backend
-python -m venv .venv
-# Windows: .venv\Scripts\activate
-# macOS/Linux: source .venv/bin/activate
+
+
 pip install -r requirements.txt
-cp .env.example .env   # Windows: copy .env.example .env
-# Edit .env — set DJANGO_SECRET_KEY, GROQ_API_KEY, CHAPA_* keys
+cp .env.example .env   
+
 python manage.py migrate
 python manage.py runserver
 ```
@@ -124,12 +123,7 @@ npm run dev
 
 App URL (Vite default): `http://localhost:5173`
 
-### 3. Smoke test
-
-1. Register a user **with a real email** (required for Chapa checkout).  
-2. Complete payment (or use **verify** flow after a test payment).  
-3. Upload a document and wait until processing status is **done**.  
-4. Chat or open **Quiz** on the dashboard.  
+ 
 
 More detail: **[Backend README](backend/README.md)** · **[Frontend README](frontend/README.md)**
 
@@ -146,12 +140,7 @@ Secrets and environment-specific values live in **gitignored** files:
 
 Templates: `backend/.env.example`, `frontend/.env.example`.
 
-**Production checklist (high level)**
-
-- Set `DJANGO_DEBUG=0`, restrict `DJANGO_ALLOWED_HOSTS`, set a strong `DJANGO_SECRET_KEY`.  
-- Set `CORS_ALLOW_ORIGINS` to your real frontend origin(s).  
-- Use a production database and static/media storage as appropriate.  
-- Point `CHAPA_CALLBACK_URL` / `CHAPA_RETURN_URL` at public HTTPS URLs.  
+  
 
 ---
 
@@ -162,6 +151,3 @@ Templates: `backend/.env.example`, `frontend/.env.example`.
 
 ---
 
-## License
-
-Add a `LICENSE` file in this repository if you distribute the project; until then, rights are reserved by the project authors.
