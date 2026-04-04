@@ -66,8 +66,7 @@ export function FunModeToggle({ funMode, onChange }) {
         <button>Laser focus mode</button>
       </label>
       <label className="toggle" >
-        <input type="checkbox" checked={funMode} onChange={(e) => onChange(e.target.checked)} />
-        <span>Fun Mode</span>
+       <button>Smart Language translate</button>
       </label>
     </div>
     
