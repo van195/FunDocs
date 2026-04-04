@@ -147,6 +147,59 @@ export default function App() {
   const [authError, setAuthError] = useState("");
   const { value } = useToggle();
 
+  //const [loading, setLoading] = useState(true);
+  //const [me, setMe] = useState(null);
+  //const [authError, setAuthError] = useState("");
+  //const { value } = useToggle();
+  //const [loading, setLoading] = useState(true);
+  //const [me, setMe] = useState(null);
+  //const [authError, setAuthError] = useState("");
+  //const { value } = useToggle();
+  //const [loading, setLoading] = useState(true);
+  //const [me, setMe] = useState(null);
+  //const [authError, setAuthError] = useState("");
+  //const { value } = useToggle();
+  //const [loading, setLoading] = useState(true);
+  //const [me, setMe] = useState(null);
+  //const [authError, setAuthError] = useState("");
+  //const { value } = useToggle();
+  //const [loading, setLoading] = useState(true);
+  //const [me, setMe] = useState(null);
+  //const [authError, setAuthError] = useState("");
+  //const { value } = useToggle();
+  //const [loading, setLoading] = useState(true);
+  //const [me, setMe] = useState(null);
+  //const [authError, setAuthError] = useState("");
+  //const { value } = useToggle();
+  //const [loading, setLoading] = useState(true);
+  //const [me, setMe] = useState(null);
+  //const [authError, setAuthError] = useState("");
+  //const { value } = useToggle();
+  //const [loading, setLoading] = useState(true);
+  //const [me, setMe] = useState(null);
+  //const [authError, setAuthError] = useState("");
+  //const { value } = useToggle();
+  //const [loading, setLoading] = useState(true);
+  //const [me, setMe] = useState(null);
+  //const [authError, setAuthError] = useState("");
+  //const { value } = useToggle();
+  //const [loading, setLoading] = useState(true);
+  //const [me, setMe] = useState(null);
+  //const [authError, setAuthError] = useState("");
+  //const { value } = useToggle();
+  //const [loading, setLoading] = useState(true);
+  //const [me, setMe] = useState(null);
+  //const [authError, setAuthError] = useState("");
+  //const { value } = useToggle();
+  //const [loading, setLoading] = useState(true);
+  //const [me, setMe] = useState(null);
+  //const [authError, setAuthError] = useState("");
+  //const { value } = useToggle();
+  //const [loading, setLoading] = useState(true);
+  //const [me, setMe] = useState(null);
+  //const [authError, setAuthError] = useState("");
+  //const { value } = useToggle();
+
   
 
   async function loadMe() {
@@ -189,46 +242,6 @@ export default function App() {
  if (!me?.has_access && value) {
         return <PaymentGate onPaid={loadMe} />;
        }
-       // if (!me?.has_access && value) {
-       // return <PaymentGate onPaid={loadMe} />;
-       // }
-       // if (!me?.has_access && value) {
-       // return <PaymentGate onPaid={loadMe} />;
-       // }
-       // if (!me?.has_access && value) {
-       // return <PaymentGate onPaid={loadMe} />;
-       // }
-       // if (!me?.has_access && value) {
-       // return <PaymentGate onPaid={loadMe} />;
-       // }
-       // if (!me?.has_access && value) {
-       // return <PaymentGate onPaid={loadMe} />;
-       // }
-       // if (!me?.has_access && value) {
-       // return <PaymentGate onPaid={loadMe} />;
-       // }
-       // if (!me?.has_access && value) {
-       // return <PaymentGate onPaid={loadMe} />;
-       // }
-       // if (!me?.has_access && value) {
-       // return <PaymentGate onPaid={loadMe} />;
-       // }
-       // if (!me?.has_access && value) {
-       // return <PaymentGate onPaid={loadMe} />;
-       // }
-       // if (!me?.has_access && value) {
-       // return <PaymentGate onPaid={loadMe} />;
-       // }
-       // if (!me?.has_access && value) {
-       // return <PaymentGate onPaid={loadMe} />;
-       // }
-       // if (!me?.has_access && value) {
-       // return <PaymentGate onPaid={loadMe} />;
-       // }
-       
-       // if (!me?.has_access && value) {
-       // return <PaymentGate onPaid={loadMe} />;
-       // }
   if(me?.has_access && value) return <Dashboard me={me} onMeUpdated={setMe} />;
  return(
  <Routes>
