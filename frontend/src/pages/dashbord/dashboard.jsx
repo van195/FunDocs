@@ -54,7 +54,7 @@ function Dashboard({ me, onMeUpdated }) {
   const activeDoc = useMemo(() => docs.find((d) => d.id === activeDocId), [docs, activeDocId]);
 
   return (
-    <div className="container">
+    <div className="container-dashbord">
       <div className="topBar">
         <div>
           <h1>Dashboard</h1>
@@ -69,7 +69,7 @@ function Dashboard({ me, onMeUpdated }) {
       </div>
 
       <div className="grid2">
-        <div className="card">
+        <div className="card-dashbord">
           <div className="cardHeader">Upload</div>
           <input
             type="file"
