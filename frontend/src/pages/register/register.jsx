@@ -2,9 +2,7 @@ import './register.css';
 import { apiFetch, clearAccessToken, getAccessToken, setAccessToken } from "../../api.js";
 import ai from "../../assets/robot.png"
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 function Register({ onAuthed,me ,loadMe}) {
-    const navigation = useNavigate()
   const [mode, setMode] = useState("login"); // login | register
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");

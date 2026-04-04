@@ -219,7 +219,133 @@ export default function App() {
   //  return <PaymentGate onPaid={loadMe} />;
   //}
 
-
+//try {
+//      const fd = new FormData();
+//      fd.append("file", file);
+//      await apiFetch("/documents/upload/", { method: "POST", body: fd });
+//      await refreshDocs();
+//    } catch (e) {
+//      setUploadError(e.message || "Upload failed");
+//    } finally {
+//      setUploadBusy(false);
+//    }//try {
+//      const fd = new FormData();
+//      fd.append("file", file);
+//      await apiFetch("/documents/upload/", { method: "POST", body: fd });
+//      await refreshDocs();
+//    } catch (e) {
+//      setUploadError(e.message || "Upload failed");
+//    } finally {
+//      setUploadBusy(false);
+//    }//try {
+//      const fd = new FormData();
+//      fd.append("file", file);
+//      await apiFetch("/documents/upload/", { method: "POST", body: fd });
+//      await refreshDocs();
+//    } catch (e) {
+//      setUploadError(e.message || "Upload failed");
+//    } finally {
+//      setUploadBusy(false);
+//    }//try {
+//      const fd = new FormData();
+//      fd.append("file", file);
+//      await apiFetch("/documents/upload/", { method: "POST", body: fd });
+//      await refreshDocs();
+//    } catch (e) {
+//      setUploadError(e.message || "Upload failed");
+//    } finally {
+//      setUploadBusy(false);
+//    }//try {
+//      const fd = new FormData();
+//      fd.append("file", file);
+//      await apiFetch("/documents/upload/", { method: "POST", body: fd });
+//      await refreshDocs();
+//    } catch (e) {
+//      setUploadError(e.message || "Upload failed");
+//    } finally {
+//      setUploadBusy(false);
+//    }//try {
+//      const fd = new FormData();
+//      fd.append("file", file);
+//      await apiFetch("/documents/upload/", { method: "POST", body: fd });
+//      await refreshDocs();
+//    } catch (e) {
+//      setUploadError(e.message || "Upload failed");
+//    } finally {
+//      setUploadBusy(false);
+//    }//try {
+//      const fd = new FormData();
+//      fd.append("file", file);
+//      await apiFetch("/documents/upload/", { method: "POST", body: fd });
+//      await refreshDocs();
+//    } catch (e) {
+//      setUploadError(e.message || "Upload failed");
+//    } finally {
+//      setUploadBusy(false);
+//    }//try {
+//      const fd = new FormData();
+//      fd.append("file", file);
+//      await apiFetch("/documents/upload/", { method: "POST", body: fd });
+//      await refreshDocs();
+//    } catch (e) {
+//      setUploadError(e.message || "Upload failed");
+//    } finally {
+//      setUploadBusy(false);
+//    }//try {
+//      const fd = new FormData();
+//      fd.append("file", file);
+//      await apiFetch("/documents/upload/", { method: "POST", body: fd });
+//      await refreshDocs();
+//    } catch (e) {
+//      setUploadError(e.message || "Upload failed");
+//    } finally {
+//      setUploadBusy(false);
+//    }//try {
+//      const fd = new FormData();
+//      fd.append("file", file);
+//      await apiFetch("/documents/upload/", { method: "POST", body: fd });
+//      await refreshDocs();
+//    } catch (e) {
+//      setUploadError(e.message || "Upload failed");
+//    } finally {
+//      setUploadBusy(false);
+//    }//try {
+//      const fd = new FormData();
+//      fd.append("file", file);
+//      await apiFetch("/documents/upload/", { method: "POST", body: fd });
+//      await refreshDocs();
+//    } catch (e) {
+//      setUploadError(e.message || "Upload failed");
+//    } finally {
+//      setUploadBusy(false);
+//    }//try {
+//      const fd = new FormData();
+//      fd.append("file", file);
+//      await apiFetch("/documents/upload/", { method: "POST", body: fd });
+//      await refreshDocs();
+//    } catch (e) {
+//      setUploadError(e.message || "Upload failed");
+//    } finally {
+//      setUploadBusy(false);
+//    }//try {
+//      const fd = new FormData();
+//      fd.append("file", file);
+//      await apiFetch("/documents/upload/", { method: "POST", body: fd });
+//      await refreshDocs();
+//    } catch (e) {
+//      setUploadError(e.message || "Upload failed");
+//    } finally {
+//      setUploadBusy(false);
+//    }//try {
+//      const fd = new FormData();
+//      fd.append("file", file);
+//      await apiFetch("/documents/upload/", { method: "POST", body: fd });
+//      await refreshDocs();
+//    } catch (e) {
+//      setUploadError(e.message || "Upload failed");
+//    } finally {
+//      setUploadBusy(false);
+//    }
   
 
 }
