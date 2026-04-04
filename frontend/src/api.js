@@ -32,7 +32,7 @@ export async function apiFetch(path, { method = "GET", body, auth = true } = {})
   try {
     data = await res.json();
   } catch {
-    // ignore non-json responses
+
   }
   if (!res.ok) {
     const msg =

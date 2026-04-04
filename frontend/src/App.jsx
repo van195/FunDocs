@@ -78,6 +78,7 @@ export function ChatBox({ documentId }) {
   const [question, setQuestion] = useState("");
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
+  const [Auth, setAuthentication] = useState(null);
 
   async function send() {
     if (!question.trim() || !documentId) return;
@@ -197,6 +198,20 @@ export default function App() {
       <Route path="/register" element={(<Register onAuthed={loadMe}  me={me} loadMe={loadMe}/>)} />
      </Routes>
  ) 
+  //if (!me) {
+  //  return <Home/>;
+  //}
+
+  //if (!me?.has_access) {
+  //  return <PaymentGate onPaid={loadMe} />;
+  //}
+  //if (!me) {
+  //  return <Home/>;
+  //}
+
+  //if (!me?.has_access) {
+  //  return <PaymentGate onPaid={loadMe} />;
+  //}
   //if (!me) {
   //  return <Home/>;
   //}
