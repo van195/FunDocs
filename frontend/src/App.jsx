@@ -104,24 +104,6 @@ export function ChatBox({ documentId }) {
       setBusy(false);
     }
   }
-//async function send() {
-//    
-//    try {
-//      const res = await apiFetch("/chat/ask/", {
-//        method: "POST",
-//        body: { document_id: documentId, question: q }
-//      });
-//      setMessages((m) => [...m, { role: "assistant", content: res.answer }]);
-//    } catch (e) {
-//      setError(e.message || "Chat failed");
-//      setMessages((m) => [
-//        ...m,
-//        { role: "assistant", content: "Sorry, I ran into an error. Try again." }
-//      ]);
-//    } finally {
-//      setBusy(false);
-//    }
-//  }
   return (
     <div className="card chat">
       <div className="chatHeader">Chat about your file</div>
