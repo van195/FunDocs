@@ -12,13 +12,6 @@ function Register({ onAuthed,me ,loadMe}) {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [busy, setBusy] = useState(false);
-
-  useEffect(()=>{
-     const update =()=> {
-       
-     } 
-     update();
-  },[])
   async function submit(e) {
     e.preventDefault();
     setError("");

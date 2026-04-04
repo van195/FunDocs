@@ -144,9 +144,8 @@ export function ChatBox({ documentId }) {
 export default function App() {
   const [loading, setLoading] = useState(true);
   const [me, setMe] = useState(null);
-  const [allowPage, setAllowPage] = useState(false)
   const [authError, setAuthError] = useState("");
-  const { value, toggle } = useToggle();
+  const { value } = useToggle();
 
   
 
@@ -182,7 +181,7 @@ export default function App() {
     );
   }
     if(!value){
-      return <Home  />;
+      return <Home />;
     }
     if(!me && value){
       return <Register onAuthed={loadMe}  me={me} loadMe={loadMe}/>;
@@ -205,18 +204,7 @@ export default function App() {
   //if (!me?.has_access) {
   //  return <PaymentGate onPaid={loadMe} />;
   //}
-  /*<Route
-        path="/dashboard"
-        element={
-          !me ? (
-            <Home />
-          ) : !me.has_access ? (
-            <PaymentGate onPaid={loadMe} />
-          ) : (
-            <Dashboard me={me} onMeUpdated={setMe} />
-          )
-        }
-      />*/
+
 
   
 
