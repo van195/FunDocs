@@ -1,5 +1,6 @@
 import './register.css';
 import { apiFetch, clearAccessToken, getAccessToken, setAccessToken } from "../../api.js";
+import ai from "../../assets/robot_hero.png"
 import { useState } from 'react';
 function Register({ onAuthed }) {
   const [mode, setMode] = useState("login"); // login | register
@@ -39,41 +40,46 @@ function Register({ onAuthed }) {
   return (
     <div className="register">
       <h1>FunDocs</h1>
-      <div className="card">
-        <div className="tabs">
-          
-          <button
-            className={mode === "register" ? "active" : ""}
-            onClick={() => setMode("register")}
-            type="button"
-          >
-            Register
-          </button>
-        </div>
+        <div className="signUpContainer">
+            <div className="card">
+                <div className="tabs">
+                
+                    <button
+                        className={mode === "register" ? "active" : ""}
+                        onClick={() => setMode("register")}
+                        type="button"
+                    >
+                        sign up
+                    </button>
+                </div>
+                
 
-        <form onSubmit={submit} className="form">
-          <label>
-            Username
-            <input value={username} onChange={(e) => setUsername(e.target.value)} required />
-          </label>
+             <form onSubmit={submit} className="form">
+                <label>
+                    
+                    <input value={username} onChange={(e) => setUsername(e.target.value)} required placeholder='user name'/>
+                </label>
 
-          {mode === "register" ? (
-            <label>
-              Email
-              <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" required />
-            </label>
-          ) : null}
+                
+                    <label>
+                    <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" required placeholder='email' />
+                    </label>
+                
 
-          <label>
-            Password
-            <input value={password} onChange={(e) => setPassword(e.target.value)} type="password" required />
-          </label>
+                <label>
+                    
+                    <input value={password} onChange={(e) => setPassword(e.target.value)} type="password" required placeholder='password' />
+                </label>
 
-          {error ? <div className="error">{error}</div> : null}
-          <button disabled={busy} type="submit">
-            {busy ? "Please wait..." : mode === "register" ? "Create account" : "Login"}
-          </button>
-        </form>
+                {error ? <div className="error">{error}</div> : null}
+                <button disabled={busy} type="submit">
+                    {busy ? "Please wait..." : mode === "register" ? "Create account" : "Login"}
+                </button>
+             </form>
+            </div>
+            <div className="theTextDecore">
+                
+            </div>
       </div>
     </div>
   );

@@ -1,6 +1,6 @@
 :root {
   --bg: #000000;
-  --card: #121a33;
+  --card: #030706;
   --text: #e8ecff;
   --muted: #a9b3da;
   --primary: #6aa6ff;
@@ -20,39 +20,60 @@ body {
   max-width: 1000px;
   margin: 30px auto;
   padding: 0 16px;
+  
+}
+.register{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background: url("../../assets/back-up-background-template.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
-.card {
-  background: var(--card);
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  border-radius: 12px;
-  padding: 16px;
-}
 
 .cardHeader {
   font-weight: 700;
   margin-bottom: 8px;
 }
 
+.signUpContainer{
+  width:80%;
+  height: 80%;
+  display: flex;
+  border-radius: 20px;
+  box-shadow: 3px 5px 10px #78c4b775;
+}
+
 .form label {
-  display: block;
   margin-bottom: 12px;
   font-size: 14px;
   color: var(--muted);
+  display:flex ;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
-
-.form input {
+ .form input {
+  
   width: 100%;
   margin-top: 6px;
   padding: 10px 12px;
-  border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  background: rgba(0, 0, 0, 0.2);
+  border: none;
+  border-bottom: 1px solid #ffffffe3;
+  background: transparent;
   color: var(--text);
+  outline: none;
+}
+.signUpContainer .theTextDecore{
+  flex: 1;
 }
 
 button {
-  background: var(--primary);
+  background: linear-gradient(60deg,#e8ecff,#74d5b6);
   border: 0;
   color: #061027;
   font-weight: 700;
@@ -82,7 +103,7 @@ button:disabled {
   flex: 1;
   background: transparent;
   border: 1px solid rgba(255, 255, 255, 0.15);
-  color: var(--text);
+  color: white;
 }
 
 .tabs button.active {

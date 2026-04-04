@@ -170,7 +170,7 @@ export default function App() {
       </div>
     );
   }
-
+if(me) return <Dashboard me={me} onMeUpdated={setMe} />;
  return(
  <Routes>
       <Route path="/" element={<Home />} />
@@ -199,7 +199,7 @@ export default function App() {
   //  return <PaymentGate onPaid={loadMe} />;
   //}
 
-  return <Dashboard me={me} onMeUpdated={setMe} />;
+  
 
 }
 
