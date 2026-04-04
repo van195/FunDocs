@@ -1,7 +1,7 @@
 import './register.css';
 import { apiFetch, clearAccessToken, getAccessToken, setAccessToken } from "../../api.js";
 import ai from "../../assets/robot_hero.png"
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { PaymentGate } from '../../App.jsx';
 function Register({ onAuthed,me ,loadMe}) {
@@ -13,6 +13,12 @@ function Register({ onAuthed,me ,loadMe}) {
   const [error, setError] = useState("");
   const [busy, setBusy] = useState(false);
 
+  useEffect(()=>{
+     const update =()=> {
+       
+     } 
+     update();
+  },[])
   async function submit(e) {
     e.preventDefault();
     setError("");
@@ -33,7 +39,7 @@ function Register({ onAuthed,me ,loadMe}) {
       });
       setAccessToken(tokens.access);
       onAuthed();
-      if(!me.has_access) return <PaymentGate onPaid={loadMe} />
+       
     } catch (err) {
       setError(err.message || "Request failed");
     } finally {

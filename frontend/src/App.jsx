@@ -1,10 +1,10 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { apiFetch, clearAccessToken, getAccessToken, setAccessToken } from "./api";
 import Register from "./pages/register/register";
-import { Route,Routes } from "react-router-dom";
+import { Route,Routes, useNavigate } from "react-router-dom";
 import Home from "./pages/home/home";
 import Dashboard from "./pages/dashbord/dashboard";
-
+import { useToggle } from "./context/PageContext";
 
 export function PaymentGate({ onPaid }) {
   const [busy, setBusy] = useState(false);
@@ -135,7 +135,9 @@ export function ChatBox({ documentId }) {
 export default function App() {
   const [loading, setLoading] = useState(true);
   const [me, setMe] = useState(null);
+  const [allowPage, setAllowPage] = useState(false)
   const [authError, setAuthError] = useState("");
+  const { value, toggle } = useToggle();
 
   
 
@@ -170,17 +172,31 @@ export default function App() {
       </div>
     );
   }
-  if (!me?.has_access) {
-   return <PaymentGate onPaid={loadMe} />;
-  }
-if(!me?.has_access) return <Dashboard me={me} onMeUpdated={setMe} />;
+    if(!value){
+      return <Home  />;
+    }
+    if(!me && value){
+      return <Register onAuthed={loadMe}  me={me} loadMe={loadMe}/>;
+    }
+ if (!me?.has_access && value) {
+        return <PaymentGate onPaid={loadMe} />;
+       }
+ 
+  if(me?.has_access && value) return <Dashboard me={me} onMeUpdated={setMe} />;
  return(
  <Routes>
       <Route path="/" element={<Home />} />
-      <Route path="/register" element={<Register onAuthed={loadMe}  me={me} loadMe={loadMe}/>} />
+      <Route path="/register" element={(<Register onAuthed={loadMe}  me={me} loadMe={loadMe}/>)} />
+     </Routes>
+ ) 
+  //if (!me) {
+  //  return <Home/>;
+  //}
 
-      {/* Protected logic */}
-      <Route
+  //if (!me?.has_access) {
+  //  return <PaymentGate onPaid={loadMe} />;
+  //}
+  /*<Route
         path="/dashboard"
         element={
           !me ? (
@@ -191,16 +207,7 @@ if(!me?.has_access) return <Dashboard me={me} onMeUpdated={setMe} />;
             <Dashboard me={me} onMeUpdated={setMe} />
           )
         }
-      />
-    </Routes>
- ) 
-  //if (!me) {
-  //  return <Home/>;
-  //}
-
-  //if (!me?.has_access) {
-  //  return <PaymentGate onPaid={loadMe} />;
-  //}
+      />*/
 
   
 

@@ -1,10 +1,11 @@
 import Hero from '../../componet/hero/hero';
 import Navbar from '../../componet/navbar/navbar';
 import './home.css';
-const Home = ()=>{
+const Home = ({allowPage})=>{
+    
     return(
         <div className="home">
-            <Navbar/>
+            <Navbar allowPage={allowPage}/>
             <Hero/>
         </div>
     )
