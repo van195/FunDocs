@@ -54,8 +54,28 @@ body {
 .cardHeader {
   font-weight: 700;
   margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  
+ 
 }
 
+ .Fileupload-bUtton{
+    
+     width: 130px ;
+     height: 30px;
+     border-radius: 5px;
+     background-color: #000000;
+     cursor: pointer;
+     transition: .4s ease;
+     &:hover{
+      transform: scale(1.05);
+      box-shadow: 4px 5px 10px #6ec6bc56;
+     }
+  }
+input[type="file"]{
+    display:none;
+  }
 .signUpContainer{
   width:80%;
   height: 80%;

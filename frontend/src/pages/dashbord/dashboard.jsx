@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { FunModeToggle,ChatBox } from "../../App";
 import { apiFetch } from "../../api";
-
+import AttachFileOutlinedIcon from '@mui/icons-material/AttachFileOutlined';
 
 function Dashboard({ me, onMeUpdated }) {
   const [funMode, setFunMode] = useState(Boolean(me.fun_mode));
@@ -71,12 +71,18 @@ function Dashboard({ me, onMeUpdated }) {
       <div className="grid2">
         <div className="card-dashbord">
           <div className="cardHeader">Upload</div>
+          <div className="uploadContainer">
+              <label className="Fileupload-bUtton" for ="fileInput"><AttachFileOutlinedIcon 
+           
+            /> Upload files</label>
           <input
-            type="file"
+            type="file"  id="fileInput"
             accept=".pdf,.txt,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,text/plain"
             disabled={uploadBusy}
             onChange={(e) => uploadFile(e.target.files?.[0])}
           />
+          </div>
+           
           {uploadError ? <div className="error">{uploadError}</div> : null}
           {uploadBusy ? <div className="hint">Processing... (this can take a moment)</div> : null}
 
