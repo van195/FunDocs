@@ -80,81 +80,6 @@ export function ChatBox({ documentId }) {
   const [error, setError] = useState("");
   const [Auth, setAuthentication] = useState(null);
 
- // const [messages, setMessages] = useState([]);
- // const [question, setQuestion] = useState("");
- // const [busy, setBusy] = useState(false);
- // const [error, setError] = useState("");
- // const [Auth, setAuthentication] = useState(null);
- // const [messages, setMessages] = useState([]);
- // const [question, setQuestion] = useState("");
- // const [busy, setBusy] = useState(false);
- // const [error, setError] = useState("");
- // const [Auth, setAuthentication] = useState(null);
- // const [messages, setMessages] = useState([]);
- // const [question, setQuestion] = useState("");
- // const [busy, setBusy] = useState(false);
- // const [error, setError] = useState("");
- // const [Auth, setAuthentication] = useState(null);
- // const [messages, setMessages] = useState([]);
- // const [question, setQuestion] = useState("");
- // const [busy, setBusy] = useState(false);
- // const [error, setError] = useState("");
- // const [Auth, setAuthentication] = useState(null);
- // const [messages, setMessages] = useState([]);
- // const [question, setQuestion] = useState("");
- // const [busy, setBusy] = useState(false);
- // const [error, setError] = useState("");
- // const [Auth, setAuthentication] = useState(null);
- // const [messages, setMessages] = useState([]);
- // const [question, setQuestion] = useState("");
- // const [busy, setBusy] = useState(false);
- // const [error, setError] = useState("");
- // const [Auth, setAuthentication] = useState(null);
- // const [messages, setMessages] = useState([]);
- // const [question, setQuestion] = useState("");
- // const [busy, setBusy] = useState(false);
- // const [error, setError] = useState("");
- // const [Auth, setAuthentication] = useState(null);
- // const [messages, setMessages] = useState([]);
- // const [question, setQuestion] = useState("");
- // const [busy, setBusy] = useState(false);
- // const [error, setError] = useState("");
- // const [Auth, setAuthentication] = useState(null);
- // const [messages, setMessages] = useState([]);
- // const [question, setQuestion] = useState("");
- // const [busy, setBusy] = useState(false);
- // const [error, setError] = useState("");
- // const [Auth, setAuthentication] = useState(null);
- // const [messages, setMessages] = useState([]);
- // const [question, setQuestion] = useState("");
- // const [busy, setBusy] = useState(false);
- // const [error, setError] = useState("");
- // const [Auth, setAuthentication] = useState(null);
- // const [messages, setMessages] = useState([]);
- // const [question, setQuestion] = useState("");
- // const [busy, setBusy] = useState(false);
- // const [error, setError] = useState("");
- // const [Auth, setAuthentication] = useState(null);
- // const [messages, setMessages] = useState([]);
- // const [question, setQuestion] = useState("");
- // const [busy, setBusy] = useState(false);
- // const [error, setError] = useState("");
- // const [Auth, setAuthentication] = useState(null);
- // const [messages, setMessages] = useState([]);
- // const [question, setQuestion] = useState("");
- // const [busy, setBusy] = useState(false);
- // const [error, setError] = useState("");
- // const [Auth, setAuthentication] = useState(null);
- // const [messages, setMessages] = useState([]);
- // const [question, setQuestion] = useState("");
- // const [busy, setBusy] = useState(false);
- // const [error, setError] = useState("");
- // const [Auth, setAuthentication] = useState(null);
- // const [messages, setMessages] = useState([]);
- // const [question, setQuestion] = useState("");
- // const [busy, setBusy] = useState(false);
- // const [error, setError] = useState("");
- // const [Auth, setAuthentication] = useState(null);
   async function send() {
     if (!question.trim() || !documentId) return;
     setError("");
@@ -264,7 +189,46 @@ export default function App() {
  if (!me?.has_access && value) {
         return <PaymentGate onPaid={loadMe} />;
        }
- 
+       // if (!me?.has_access && value) {
+       // return <PaymentGate onPaid={loadMe} />;
+       // }
+       // if (!me?.has_access && value) {
+       // return <PaymentGate onPaid={loadMe} />;
+       // }
+       // if (!me?.has_access && value) {
+       // return <PaymentGate onPaid={loadMe} />;
+       // }
+       // if (!me?.has_access && value) {
+       // return <PaymentGate onPaid={loadMe} />;
+       // }
+       // if (!me?.has_access && value) {
+       // return <PaymentGate onPaid={loadMe} />;
+       // }
+       // if (!me?.has_access && value) {
+       // return <PaymentGate onPaid={loadMe} />;
+       // }
+       // if (!me?.has_access && value) {
+       // return <PaymentGate onPaid={loadMe} />;
+       // }
+       // if (!me?.has_access && value) {
+       // return <PaymentGate onPaid={loadMe} />;
+       // }
+       // if (!me?.has_access && value) {
+       // return <PaymentGate onPaid={loadMe} />;
+       // }
+       // if (!me?.has_access && value) {
+       // return <PaymentGate onPaid={loadMe} />;
+       // }
+       // if (!me?.has_access && value) {
+       // return <PaymentGate onPaid={loadMe} />;
+       // }
+       // if (!me?.has_access && value) {
+       // return <PaymentGate onPaid={loadMe} />;
+       // }
+       
+       // if (!me?.has_access && value) {
+       // return <PaymentGate onPaid={loadMe} />;
+       // }
   if(me?.has_access && value) return <Dashboard me={me} onMeUpdated={setMe} />;
  return(
  <Routes>
